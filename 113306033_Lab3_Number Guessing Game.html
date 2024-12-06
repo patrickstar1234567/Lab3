@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>113306033_Lab3_Number Guessing Game</title>
+</head>
+<body>
+	<h1>113306033_Lab3_Number Guessing Game</h1>
+	<div id="resultContainer"></div>
+
+	<script type="text/javascript">
+	window.onload = function() {
+	var secretNumber =  Math.floor(Math.random() * 100) + 1;
+	var attempts = 7
+	var lowerBound = 0;
+	var upperBound = 100;
+	var userGuess;
+
+	var resultContainer = document.getElementById("resultContainer");
+	while (attempts > 0) {
+		userGuess = window.prompt("Guess a number between " + lowerBound + " and " + upperBound + ".");
+		userGuess = parseInt(userGuess);
+
+		if(userGuess == secretNumber) {
+			alert("Congratulations! U guessed the right number!");
+			resultContainer.innerHTML = '<img src="correct.jpg" alt="Correct!">';
+			break;
+		}else if (userGuess < secretNumber) {
+			lowerBound = userGuess;
+			attempts--;
+			alert("The secret number is greater than " + userGuess + ", range narrowed to " + lowerBound + " to " + upperBound + ", u still have " + attempts + " chances");
+		}else {
+	        upperBound = userGuess;
+	        attempts--;
+	        alert("The secret number is less than " + userGuess + ", range narrowed to " + lowerBound + " to " + upperBound + ". u still have " + attempts + " chances.");
+	    }
+    }
+    if (attempts === 0) {
+    	alert("Sorry, u've run out of attempts. The correct secret number was " + secretNumber + ".");
+    	resultContainer.innerHTML = '<img src="wrong.jpg" alt="Wrong!">';
+	}
+	}
+
+	</script>
+
+
+
+</body>
+</html>
